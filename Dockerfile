@@ -40,9 +40,8 @@ RUN pip install --no-cache-dir /wheels/*
 # Copy application code
 COPY . .
 
-# Set environment variables
-ENV PYTHONPATH=/app \
-    PORT=5500
+# Set environment variables (don't override platform PORT)
+ENV PYTHONPATH=/app
 
 # Set Gunicorn command with environment variable expansion in the CMD
 ENV GUNICORN_CMD_ARGS="--workers=4 --worker-class=gevent --worker-connections=1000 --timeout=30 --keep-alive=5"
@@ -55,5 +54,8 @@ USER appuser
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:$PORT/health || exit 1
 
-# Run the application using Gunicorn with the correct port binding
-CMD exec gunicorn --bind :$PORT --workers 4 --worker-class gevent --worker-connections 1000 --timeout 30 --keep-alive 5 main:app
+# Optionally expose the default dev port (platforms like Render set PORT dynamically)
+EXPOSE 5500
+
+# Run the application using Gunicorn, binding to $PORT if provided, else 5500
+CMD ["sh", "-c", "exec gunicorn --bind :\${PORT:-5500} --workers 4 --worker-class gevent --worker-connections 1000 --timeout 30 --keep-alive 5 main:app"]

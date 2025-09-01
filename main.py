@@ -48,6 +48,12 @@ def health():
     return jsonify({"status": "ok"})
 
 
+# Simple root route to help platform port detection
+@app.route("/", methods=["GET"])
+def index():
+    return jsonify({"status": "ok", "service": "alexa-rag-pipeline-service"})
+
+
 @app.route("/ingest", methods=["POST"])
 def ingest_documents():
     # Check if the post request has the file part
