@@ -1,0 +1,22 @@
+# Core
+Flask==3.1.2
+python-dotenv==1.1.1
+Werkzeug==3.0.3
+requests==2.32.3
+python-magic==0.4.27
+python-magic-bin==0.4.14; sys_platform == 'win32'
+
+# Document processing
+langchain==0.3.27
+langchain-core==0.3.74
+langchain-community==0.3.27
+langchain-text-splitters==0.3.9
+langchain-google-genai==2.1.9
+langchain-qdrant==0.2.0
+
+# Vector store
+qdrant-client==1.15.1
+
+# Document formats
+pypdf==6.0.0
+python-docx==1.1.2
