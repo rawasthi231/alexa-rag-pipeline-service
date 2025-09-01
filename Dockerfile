@@ -56,4 +56,4 @@ HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:$PORT/health || exit 1
 
 # Run the application using Gunicorn with the correct port binding
-CMD ["sh", "-c", "exec gunicorn --bind :$PORT --workers 4 --worker-class gevent --worker-connections 1000 --timeout 30 --keep-alive 5 main:app"]
+CMD exec gunicorn --bind :$PORT --workers 4 --worker-class gevent --worker-connections 1000 --timeout 30 --keep-alive 5 main:app
