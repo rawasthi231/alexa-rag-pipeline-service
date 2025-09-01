@@ -1,7 +1,7 @@
 # Core
 Flask==3.1.2
 python-dotenv==1.1.1
-Werkzeug==3.0.3
+Werkzeug>=3.1.0,<4
 requests==2.32.3
 python-magic==0.4.27
 python-magic-bin==0.4.14; sys_platform == 'win32'
@@ -16,6 +16,10 @@ langchain-qdrant==0.2.0
 
 # Vector store
 qdrant-client==1.15.1
+
+# Production server
+gunicorn==22.0.0
+gevent==24.2.1
 
 # Document formats
 pypdf==6.0.0
