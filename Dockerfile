@@ -16,4 +16,4 @@ COPY . .
 EXPOSE 5500
 
 # Command to run the app
-CMD ["python", "main.py"]
+CMD ["python", "entrypoint.py"]

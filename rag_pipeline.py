@@ -27,13 +27,13 @@ class GeminiRAGPipeline:
 
         # LLM with Gemini
         self.llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0)
+        self.collection_name = "documents"
 
     def setup_collection(self):
         """Create Qdrant collection if it doesn't exist"""
         try:
             self.qdrant_client.create_collection(
                 collection_name=self.collection_name,
-                # vectors_config=VectorParams(size=384, distance=Distance.COSINE),
                 vectors_config=VectorParams(size=768, distance=Distance.COSINE),
             )
         except Exception as e:

@@ -19,7 +19,6 @@ qdrant-client==1.15.1
 
 # Production server
 gunicorn==22.0.0
-gevent==24.2.1
 
 # Document formats
 pypdf==6.0.0
